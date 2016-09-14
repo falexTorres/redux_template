@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1=title
+  p Welcome to #{title}
+  h3 UserList(size=#{unList.length}):
+  - for (var i = 0; i < unList.length; i++) {
+      span un: #{unList[i]} | pw: #{pwList[i]}
+      br  
+  - }
+
+  span#example.block
+
+block scripts
+  script(src='/static/javascripts/index.js')
