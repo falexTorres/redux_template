@@ -76,6 +76,6 @@ var CommentBox = React.createClass({displayName: "CommentBox",
 });
 
 ReactDOM.render(
-  React.createElement(CommentBox, {url: "/api/comments", pollInterval: 5000}),
+  React.createElement(CommentBox, {url: "/api/comments", pollInterval: "{2000}"}),
   document.getElementById('example')
 );
