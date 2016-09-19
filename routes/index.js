@@ -22,4 +22,8 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/playground', function(req, res, next) {
+  res.render('playground');
+});
+
 module.exports = router;

@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var User = require('./models/user');
+var Comment = require('./models/comment');
 var React = require('./node_modules/react/react');
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -19,11 +20,11 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('mongodb connection successful');
-  var user = new User({username: 'administrator', password: 'password'});
-  user.save(function(err) {
-    if (err) console.log(err);
-    else console.log('added user successfully');
-  });
+  //var user = new User({username: 'administrator', password: 'password'});
+  //user.save(function(err) {
+  //  if (err) console.log(err);
+  //  else console.log('added user successfully');
+  //});
 });
 
 // view engine setup
