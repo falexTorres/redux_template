@@ -12,10 +12,9 @@ router.get('/comments', function(req, res, next) {
   Comment.find({}, function(err, comments) {
 
     comments.forEach(function(comment) {
-      console.log(comment.object);
       var includes = false;
       for(var i = 1; i <= data.length; i++) {
-        if (i == comment.id) includes = true;
+        if (comment.text == data[i-1].text) includes = true;
       }
       if (!includes) data.push(comment);
     });
@@ -41,11 +40,11 @@ router.post('/comments', function(req, res, next) {
     comments.forEach(function(comment) {
       var includes = false;
       for(var i = 1; i <= data.length; i++) {
-        if (i == comment.id) includes = true;
+        if (comment.text == data[i-1].text) includes = true;
       }
       if (!includes) data.push(comment);
     });
-    console.log(data);
+
     res.send(data);
 
   });
