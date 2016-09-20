@@ -33,7 +33,7 @@ router.post('/comments', function(req, res, next) {
     });
   }
 
-  var data = datum;
+  /*var data = datum;
 
   Comment.find({}, function(err, comments) {
 
@@ -47,7 +47,7 @@ router.post('/comments', function(req, res, next) {
 
     res.send(data);
 
-  });
+  });*/
 
 });
 
