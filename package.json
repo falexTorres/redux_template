@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "gulp"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
@@ -14,7 +14,17 @@
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0",
     "mongoose": "~4.6.0",
-    "react": "~15.3.1",
-    "react-tools": "~0.13.3"
+    "react": "^15.0.1",
+    "material-ui": "^0.15.0",
+    "react-dom": "^15.0.1",
+    "react-tap-event-plugin": "^1.0.0",
+    "react-tools": "~0.13.3",
+    "gulp": "~3.9.1",
+    "browserify": "~13.1.0",
+    "require-dir": "~0.3.0",
+    "underscore": "~1.8.3",
+    "vinyl-source-stream": "~1.1.0",
+    "babelify": "~7.3.0",
+    "jquery": "~3.1.0"
   }
 }

@@ -1,11 +1,10 @@
 extends layout
 
-block content
-  h1 React Style Playgound
+block navbar
   #playground
 
+block content
+  h1 React Style Playgound
+
 block scripts
-  script(src='/static/javascripts/material-ui/index.js', type='application/js')
-  script(src='/static/javascripts/material-ui/AppBar/index.js', type='application/js')
-  script(src='/static/javascripts/material-ui/AppBar/AppBar.js', type='application/js')
-  script(src='/static/javascripts/playground.jsx', type='text/jsx')
+  script(src='/static/build/playground.js')

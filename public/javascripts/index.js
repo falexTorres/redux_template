@@ -1,47 +1,74 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import jQuery from 'jquery';
+import $ from 'jquery';
+
 var data = [{id: 1, author: "dennis ritchie", text: "this is comment one."}, {id: 2, author: "bjarne stroustrop", text: "this is comment two."}];
 
-var Comment = React.createClass({displayName: "Comment",
+var Comment = React.createClass({
   render: function() {
     return (
-      React.createElement("div", {className: "comment"}, 
-        React.createElement("h2", {className: "commentAuthor"}, 
-          this.props.author
-        ), 
-        this.props.children
-      )
+      <div className="comment">
+        <h2 className="commentAuthor">
+          {this.props.author}
+        </h2>
+        {this.props.children}
+      </div>
     );
   }
 });
 
-var CommentList = React.createClass({displayName: "CommentList",
+var CommentList = React.createClass({
   render: function() {
     var commentNodes = this.props.data.map(function(comment) {
       return (
-        React.createElement(Comment, {author: comment.author, key: comment.id}, 
-          comment.text
-        )
+        <Comment author={comment.author} key={comment.id}>
+          {comment.text}
+        </Comment>
       );
     });
     return (
-      React.createElement("div", {className: "commentList"}, 
-        commentNodes
-      )
+      <div className="commentList">
+        {commentNodes}
+      </div>
     );
   }
 });
 
-var CommentForm = React.createClass({displayName: "CommentForm",
+var CommentForm = React.createClass({
+  getInitialState: function() {
+    return {author: '', text: ''};
+  },
+  handleAuthorChange: function(e) {
+    this.setState({author: e.target.value});
+  },
+  handleTextChange: function(e) {
+    this.setState({text: e.target.value});
+  },
+  handleSubmit: function(e) {
+    e.preventDefault();
+    var author = this.state.author.trim();
+    var text = this.state.text.trim();
+    if (!text || !author) {
+      return;
+    }
+
+    this.props.onCommentSubmit({author: author, text: text});
+    this.setState({author: '', text: ''});
+  },
   render: function() {
     return (
-      React.createElement("div", {className: "commentForm"}, 
-        "I am a comment form."
-      )
+      <form className="commentForm" onSubmit={this.handleSubmit}>
+        <input type="text" placeholder="Your name" value={this.state.author}onChange={this.handleAuthorChange} />
+        <input type="text" placeholder="Say something.." value={this.state.text} onChange={this.handleTextChange}/>
+        <input type="submit" value="Post"/>
+      </form>
     );
   }
 });
 
 
-var CommentBox = React.createClass({displayName: "CommentBox",
+var CommentBox = React.createClass({
   loadCommentsFromServer: function() {
     $.ajax({
       url: this.props.url,
@@ -55,6 +82,25 @@ var CommentBox = React.createClass({displayName: "CommentBox",
       }.bind(this)
     });
   },
+  handleCommentSubmit: function(comment) {
+    var comments = this.state.data;
+    comment.id = Date.now();
+    var newComments = comments.concat([comment])
+    this.setState({data: newComments});
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      method: 'POST',
+      data: comment,
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        this.setState({data: comments});
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
   getInitialState: function() {
     return {data: []};
   },
@@ -64,18 +110,18 @@ var CommentBox = React.createClass({displayName: "CommentBox",
   },
   render: function() {
     return (
-      React.createElement("div", {className: "commentBox"}, 
-        React.createElement("h1", null, "Comments"), 
-        React.createElement(CommentList, {data: this.state.data}), 
-        React.createElement("br", null), 
-        React.createElement("hr", null), 
-        React.createElement(CommentForm, null)
-      )
+      <div className="commentBox">
+        <h1>Comments</h1>
+        <CommentList data={this.state.data}/>
+        <br/>
+        <hr/>
+        <CommentForm onCommentSubmit={this.handleCommentSubmit}/>
+      </div>
     );
   }
 });
 
 ReactDOM.render(
-  React.createElement(CommentBox, {url: "/api/comments", pollInterval: 5000}),
+  <CommentBox url="/api/comments" pollInterval={5000}/>,
   document.getElementById('example')
 );
