@@ -1,21 +1,15 @@
 var dest = './public/build',
-    src = './public/javascripts/';
+    src = './redux/';
 
 module.exports = {
   browserify: {
     debug: true, 
     bundleConfigs: [
     {
-      entries: src + 'playground.js',
-      dest: dest,
-      outputName: 'playground.js'
-
-    },
-    {
-      entries: src + 'index.js',
+      entries: src + 'app.js',
       dest: dest,
       outputName: 'index.js'
-    }],
+    },
 
     extensions: ['.js']
 
