@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var User = require('./models/user');
-var Comment = require('./models/comment');
 var React = require('./node_modules/react/react');
 var routes = require('./routes/index');
 var users = require('./routes/users');

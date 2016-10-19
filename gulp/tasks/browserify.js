@@ -4,7 +4,7 @@ var source = require('vinyl-source-stream');
 var config = require('../config').browserify;
 var babelify = require('babelify');
 
-gulp.task('browserify', ['start'], function(callback) {
+gulp.task('browserify', function(callback) {
   var bundleQueue = config.bundleConfigs.length;
   var browserifyThis = function(bundleConfig) {
     var bundler = browserify({

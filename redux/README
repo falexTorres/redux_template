@@ -1,0 +1,11 @@
+actions => payloads of information that send data from application to store
+
+reducers => actions describe the fact that something happened, but don't specify how the application's state changes in response
+
+stores => the object that interfaces actions and reducers, holds application state
+
+components => React components
+
+containers => containers for the react components that read a part of the Redux state tree and supply props to the component it renders
+
+index.js => renders the root component

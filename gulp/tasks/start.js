@@ -12,7 +12,7 @@ var gulp = require('gulp');
 /**
  * Get port from environment and store in Express.
  */
-gulp.task('start', function() {
+gulp.task('start', ['build'], function() {
     var port = normalizePort(process.env.PORT || '3000');
     app.set('port', port);
 

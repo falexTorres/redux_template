@@ -6,10 +6,10 @@ module.exports = {
     debug: true, 
     bundleConfigs: [
     {
-      entries: src + 'app.js',
+      entries: src + 'index.js',
       dest: dest,
-      outputName: 'index.js'
-    },
+      outputName: 'root.js'
+    }],
 
     extensions: ['.js']
 

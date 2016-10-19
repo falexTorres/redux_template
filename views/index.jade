@@ -1,11 +1,6 @@
 extends layout
 
 block content
-  h1=title
-  p Welcome to #{title}
-  h3 UserList(size=#{unList.length}):
-
-  span#example.block
-
+  #root
 block scripts
-  script(src='/static/build/index.js')
+  script(src='/static/build/root.js')
