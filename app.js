@@ -13,8 +13,8 @@ var api = require('./routes/api');
 
 var app = express();
 
-// connect to mongodb
-mongoose.connect('mongodb://localhost/test');
+// connect to mongodb through mlab
+mongoose.connect("mongodb://atorres:asdf;lkj1@ds057066.mlab.com:57066/ntcpersistence");
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
